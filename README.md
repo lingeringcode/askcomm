@@ -1,4 +1,4 @@
-# evekeys: Isolate keywords from an event-based and custom-grouped textual corpus
+# askcomm: Python 3 module - Search patterns for event-based, community-detected twitter data.
 
 By Chris Lindgren <chris.a.lindgren@gmail.com>
 
