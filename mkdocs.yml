@@ -1,0 +1,4 @@
+site_name: askcomm - Search patterns for event-based, community-detected twitter data.
+nav:
+    - Home: index.md
+theme: readthedocs
