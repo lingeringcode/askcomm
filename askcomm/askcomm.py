@@ -115,10 +115,10 @@ def find_links(**kwargs):
 '''
 def find_mentions(**kwargs):
     period_tweets = []
-    p_query = kwargs['dft']
-    
+    p_query = kwargs['dft'].copy().reset_index(drop=True)
+
     if kwargs['st'] == 'mentions_only':
-        for row in copy_query.to_dict('records'):
+        for row in p_query.to_dict('records'):
             # CHECK MENTIONS
             m = row['mentions']
             if isinstance(m, str):
