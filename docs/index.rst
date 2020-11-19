@@ -1,4 +1,9 @@
-## Overview
+=========
+ askcomm
+=========
+
+Overview
+========
 
 A set of search patterns that query a corpus of event-based and community-detected tweets, but it could be modified to query most social-network (node-edge) data. The queries are great for content produced within the detected-community subgraph data.
 
@@ -8,7 +13,8 @@ It assumes you have:
 - included metadata information, such as a list of dates and list of groups to reorganize your corpus, and
 - pre-processed your documents as community-detected data across periodic events.
 
-## Functions
+Functions
+=========
 
 ```query_controller```: Accepts corpus and hub user data and searches for tweets germane to the detected module community across a range of periods and communities. It uses the ```find_mentions``` function to conduct a cross-reference search within a period's data range with 2 options: 'mentions_only' or 'user_and_mentions'. '```mentions_only```' searches a column with a List of mentions per tweet. '```user_and_mentions```' cross references the author  of a tweet with the list of mentions. It returns a Dict of top result tweets found during that period.
 
@@ -38,11 +44,14 @@ It functions only with Python 3.x and is not backwards-compatible.
 
 **Warning**: askcomm performs little to no custom error-handling, so make sure your inputs are formatted properly. If you have questions, please let me know via email.
 
-## System requirements
+System requirements
+===================
 
 * pandas
+* tqdm
 
-## Installation
+Installation
+============
 
 1. Download this repo onto your computer.
 2. Store the folder in a meaningful location.
@@ -50,10 +59,12 @@ It functions only with Python 3.x and is not backwards-compatible.
 4. In the terminal, navigate to the root of the folder.
 5. In the terminal, run ```pip install .```
 
-## Known Issues or Limitations
+Known Issues or Limitations
+===========================
 
 - Please contact me if you discover any issues.
 
-## Example notebooks
+Example notebooks
+=================
 
 - Coming ...
