@@ -13,7 +13,7 @@ setup(
   long_description_content_type="text/markdown",
   url = 'https://github.com/lingeringcode/askcomm/',
   download_url = 'https://github.com/lingeringcode/askcomm/',
-  install_requires = ['pandas'],
+  install_requires = ['pandas','tqdm'],
   keywords = ['corpus querying', 'search patterns', 'event-based corpus'],
   classifiers = [],
   include_package_data=True
