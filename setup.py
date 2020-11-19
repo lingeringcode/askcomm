@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 setup(
   name = 'askcomm',
   packages = ['askcomm'],
-  version = '0.0.1',
+  version = '0.0.2',
   description = 'A set of search patterns that query a corpus of event-based and community-detected tweets, but it could be modified to query most social-network (node-edge) data.',
   author = 'Chris A. Lindgren',
   author_email = 'chris.a.lindgren@gmail.com',

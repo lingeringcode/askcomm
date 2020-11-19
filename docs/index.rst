@@ -56,4 +56,4 @@ It functions only with Python 3.x and is not backwards-compatible.
 
 ## Example notebooks
 
-- Coming soon.
+- Coming ...
