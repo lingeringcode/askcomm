@@ -21,6 +21,7 @@
 import pandas as pd
 import ast
 import re
+from tqdm import tqdm_notebook as tqdm
 
 '''
     find_ht: Queries subset of isolated mentioned or authored tweets with hashtag group list.
@@ -36,7 +37,8 @@ import re
 def find_ht(**kwargs):
     htg_tweets = []
     copy_query = kwargs['dft'].copy().reset_index(drop=True)
-    for row in copy_query.to_dict('records'):
+    copy_query = copy_query.to_dict('records')
+    for row in tqdm(copy_query):
         # CHECK MENTIONS
         h = row['hashtags']
         if isinstance(h, str):
@@ -221,9 +223,8 @@ def query_controller(**kwargs):
                     mentioned=sk[1]
                 )
 
-                #
+                # If no um, search for any authored tweets by user source
                 if query_user_and_mentions.empty:
-                    # search for any authored tweets by user source
                     query_a = corpus_htg[(corpus_htg['username'] == sk[0])]
 
                     if query_a.empty:
@@ -245,9 +246,9 @@ def query_controller(**kwargs):
                         # Sort by descending RT counts
                         sorted_df = query_a.sort_values('retweets_count', ascending=False)
 
-                        # Create tweet output to add
-                        sdf = sorted_df.iloc[:1]
-                        add_tweet = sdf['username'].values[0]+' :: RTs '+str(sdf['retweets_count'].values[0])+', Likes '+str(sdf['likes_count'].values[0])+': '+sdf['tweet'].values[0]
+                        # # Create tweet output to add
+                        # sdf = sorted_df.iloc[:1]
+                        # add_tweets = sdf['username'].values[0]+' :: RTs '+str(sdf['retweets_count'].values[0])+', Likes '+str(sdf['likes_count'].values[0])+': '+sdf['tweet'].values[0]
 
                         # Find hub info for user
                         hub_user = hubs[
@@ -260,16 +261,16 @@ def query_controller(**kwargs):
                         hu_dict = hu_dict_list[0]
 
                         # Add most RT'd tweet
-                        hu_dict.update({'tweet': add_tweet})
+                        hu_dict.update({'tweet': sorted_df.to_dict('records')})
                         new_corpus_dict[p][m][sk[0]]['m'].append(hu_dict)
 
                 elif not query_user_and_mentions.empty:                        
                     # Sort by descending RT counts
                     sorted_df = query_user_and_mentions.sort_values('retweets_count', ascending=False)
 
-                    # Create tweet output to add
-                    sdf = sorted_df.iloc[:1]
-                    add_tweet = sdf['username'].values[0]+' :: RTs '+str(sdf['retweets_count'].values[0])+', Likes '+str(sdf['likes_count'].values[0])+': '+sdf['tweet'].values[0]
+                    # # Create tweet output to add
+                    # sdf = sorted_df.iloc[:1]
+                    # add_tweets = sdf['username'].values[0]+' :: RTs '+str(sdf['retweets_count'].values[0])+', Likes '+str(sdf['likes_count'].values[0])+': '+sdf['tweet'].values[0]
 
                     # Find hub info for user
                     hub_user = hubs[
@@ -282,7 +283,7 @@ def query_controller(**kwargs):
                     hu_dict = hu_dict_list[0]
 
                     # Add most RT'd tweet
-                    hu_dict.update({'tweet': add_tweet})
+                    hu_dict.update({'tweet': sorted_df.to_dict('records')})
                     new_corpus_dict[p][m][sk[0]]['um'].append(hu_dict)
     
     return new_corpus_dict
