@@ -17,7 +17,7 @@
 
 # It functions only with Python 3.x and is not backwards-compatible.
 
-# Warning: evekeys performs little to no custom error-handling, so make sure your inputs are formatted properly. If you have questions, please let me know via email.
+# Warning: askcomm performs little to no custom error-handling, so make sure your inputs are formatted properly. If you have questions, please let me know via email.
 import pandas as pd
 import ast
 import re
