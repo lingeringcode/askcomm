@@ -62,7 +62,7 @@ Installation
 Known Issues or Limitations
 ===========================
 
-- Please contact me if you discover any issues.
+Please contact me if you discover any issues.
 
 Example notebooks
 =================
