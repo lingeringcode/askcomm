@@ -5,7 +5,7 @@
 Overview
 ========
 
-A set of search patterns that query a corpus of event-based and community-detected tweets, but it could be modified to query most social-network (node-edge) data. The queries are great for content produced within the detected-community subgraph data.
+A set of search patterns that query a corpus of event-based and community-detected social network (node-edge) data. The queries are great for content produced within the detected-community subgraph data.
 
 It assumes you have:
 
@@ -16,29 +16,34 @@ It assumes you have:
 Functions
 =========
 
-```query_controller```: Accepts corpus and hub user data and searches for tweets germane to the detected module community across a range of periods and communities. It uses the ```find_mentions``` function to conduct a cross-reference search within a period's data range with 2 options: 'mentions_only' or 'user_and_mentions'. '```mentions_only```' searches a column with a List of mentions per tweet. '```user_and_mentions```' cross references the author  of a tweet with the list of mentions. It returns a Dict of top result tweets found during that period.
+``query_controller``: Accepts corpus and hub user data and searches for content germane to the detected module community across a range of periods and communities. 
 
-```python
+- ``find_mentions``: A function to conduct a cross-reference search within a period's data range with 2 options: ``mentions_only`` or ``user_and_mentions``. 
+ - ``mentions_only`` searches a column with a List of mentions per tweet.
+ - ``user_and_mentions`` cross references the author of a tweet with the list of mentions.
+ - @returns a Dict of top result posts/content found during that period.
+
+``
 query_controller(
-    hubs=df_hubs,#community-detected data
-    hub_col_period='period',#column name for periods
-    hub_col_module='info_module',# column name for community name
-    hub_col_users='name',#column name for 
-    period_range=[1,10],#range of desired periods
-    module_range=[1,10],#range of desired communities/modules
-    corpus=c_htg,#content corpus
-    period_dates=period_dates,#List of lists with dates to 
-    col_dates='dates'#column name for dates
+ hubs=df_hubs,#community-detected data
+ hub_col_period='period',#column name for periods
+ hub_col_module='info_module',# column name for community name
+ hub_col_users='name',#column name for specific user
+ period_range=[1,10],#range of desired periods
+ module_range=[1,10],#range of desired communities/modules
+ corpus=c_htg,#content corpus
+ period_dates=period_dates,#List of lists with date ranges
+ col_dates='dates'#column name for dates
 )
-```
+``
 
-```convert_to_df```: Converts the Dict output from query_controller into a Dataframe with top result per user. If no tweet found , appends as None.
+`convert_to_df`: Converts the Dict output from query_controller into a Dataframe with top result per user. If no tweet found , appends as None.
 
-```find_ht```: Queries subset of isolated mentioned or authored tweets with hashtag group list. It returns another subset as a dataframe.
+`find_ht`: Queries subset of isolated mentioned or authored tweets with hashtag group list. It returns another subset as a dataframe.
 
-```find_links```: Queries links in tweets with search string. It returns subset as a dataframe.
+`find_links`: Queries links in tweets with search string. It returns subset as a dataframe.
 
-Other functions include: ```find_mentions``` and ```print_subset```.
+Other functions include: `find_mentions` and `print_subset`.
 
 It functions only with Python 3.x and is not backwards-compatible.
 
